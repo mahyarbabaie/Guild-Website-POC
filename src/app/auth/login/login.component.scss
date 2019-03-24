@@ -1,0 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+h2 {
+  text-align: center;
+}
+
+.has-error input[type="username"],
+.has-error input[type="password"] {
+  border-color: rgb(216, 12, 12);
+  color: rgb(230, 14, 14);
+}

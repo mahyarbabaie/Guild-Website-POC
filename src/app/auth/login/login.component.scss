@@ -4,8 +4,20 @@ h2 {
   text-align: center;
 }
 
-.has-error input[type="username"],
+.has-error input[type="text"],
 .has-error input[type="password"] {
   border-color: rgb(216, 12, 12);
+}
+
+
+.username-error,
+.password-error {
   color: rgb(230, 14, 14);
 }
+
+button[type="submit"]:hover {
+    background-color: #0003b8;
+}
+
+
+

@@ -4,9 +4,9 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <div>
+      <div class="login-form">
         <div class="form-group">
-          <p [ngClass]="{ 'has-error': isSubmitted && formControls.username.errors }">
+          <p [ngClass]="{ 'has-error': formControls.username.touched && !formControls.username.valid}">
             <label for="username">Username</label>
             <input
               type="text"
@@ -14,9 +14,15 @@
               class="form-control"
               formControlName="username">
           </p>
+          <span *ngIf="formControls.username.touched && !formControls.username.valid">
+            <p class="username-error">
+              Your username must contain 6-16 characters. It supports letters and numbers
+            </p>
+          </span>
         </div>
+
         <div class="form-group">
-          <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+          <p [ngClass]="{ 'has-error': formControls.password.touched && !formControls.password.valid }">
             <label for="password">Password</label>
             <input
               type="password"
@@ -24,12 +30,11 @@
               class="form-control"
               formControlName="password">
           </p>
-        </div>
-
-        <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
-          <div *ngIf="formControls.password.errors.required">
-            Password must be at least 6 characters, no more than 15 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.
-          </div>
+          <span *ngIf="formControls.password.touched && !formControls.password.valid" class="help-block">
+            <p class="password-error">
+              Password must contain 7 - 16 characters and it needs to include at least one upper case letter, and one lower case letter, and one numeric digit.
+            </p>
+          </span>
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
       </div>

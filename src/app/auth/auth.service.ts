@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {User} from './user';
+import {UserData} from './userData';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +9,19 @@ export class AuthService {
 
   constructor(private https: HttpClient) { }
 
-  login(userInfo: User) {
-    if (userInfo.username !== null && userInfo.password !== null) {
+  login(userData: UserData) {
+    // TODO: http.GET() user info and see if it returns a value
+    if (userData.username !== null && userData.password !== null) {
       localStorage.setItem('ACCESS_TOKEN', 'access_token');
       return true;
     }
     return false;
+  }
+
+  register(userData: UserData) {
+    if (userData.email !== null && userData.username !== null && userData.password !== null) {
+      // TODO: http.POST() the user data to back-end
+    }
   }
 
   isLoggedIn() {

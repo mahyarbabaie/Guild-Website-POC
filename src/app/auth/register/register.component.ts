@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
+import {UserData} from '../userData';
 
 @Component({
   selector: 'app-register',
@@ -31,11 +32,25 @@ export class RegisterComponent implements OnInit {
   register() {
     console.log(this.registerForm.value);
     this.submitted = true;
-    if (this.registerForm.invalid) { return;}
-    this.authService.register(this.registerForm.value); // TODO: authService in back-end POST
-    this.authService.login(this.registerForm.value); // TODO: authService in back-end GET
-    this.router.navigate(['home']);
-    this.registerForm.reset();
+    if (this.registerForm.invalid) { return; }
+    this.authService.register(this.registerForm.value)
+      .subscribe(
+        data => {
+          this.authService.login(this.registerForm.value)
+            .subscribe(
+              data2 => {
+              },
+              error => {
+                console.log(error);
+              }
+            );
+          this.router.navigate(['home']);
+          this.registerForm.reset();
+        },
+        error => {
+        console.log(error);
+        }
+      );
   }
 
   forbiddenNames(control: FormControl): {[s: string]: boolean} {

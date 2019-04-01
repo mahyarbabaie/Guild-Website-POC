@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {UserData} from './userData';
+import {environment} from '../../environments/environment';
+import {BASE_AUTH_SERVICE_URL} from '../app.constants';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +12,43 @@ export class AuthService {
 
   constructor(private https: HttpClient) { }
 
+  private httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+
+
   login(userData: UserData) {
-    // TODO: http.GET() user info and see if it returns a value
     if (userData.username !== null && userData.password !== null) {
-      localStorage.setItem('ACCESS_TOKEN', 'access_token');
-      return true;
+      return this.https.post(`${environment.apiHost}${BASE_AUTH_SERVICE_URL}/login`,
+        {
+          username: userData.username,
+          password: userData.password
+        }).pipe(
+        map(
+          (data)  => {
+            let responseJson = JSON.stringify(data);
+            localStorage.setItem('AUTHENTICATED_USER', userData.username);
+            localStorage.setItem('ACCESS_TOKEN', JSON.parse(responseJson).token);
+            console.log('Logged In Successfully');
+          }
+        )
+      );
     }
-    return false;
   }
 
   register(userData: UserData) {
     if (userData.email !== null && userData.username !== null && userData.password !== null) {
-      // TODO: http.POST() the user data to back-end
+      return this.https.post(`${environment.apiHost}${BASE_AUTH_SERVICE_URL}/register`,
+        {
+          username: userData.username,
+          email: userData.email,
+          passwordSalt: 'salt',
+          passwordHash: userData.password
+        }).pipe(
+          map(
+            data => {
+              console.log('Registered Successfully');
+            }
+          )
+      );
     }
   }
 

@@ -31,9 +31,16 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.submitted = true;
     if (this.loginForm.invalid) { return; }
-    this.authService.login(this.loginForm.value); // TODO: authService in back-end
-    this.router.navigate(['home']);
-    this.loginForm.reset();
+    this.authService.login(this.loginForm.value)
+      .subscribe(
+        data => {
+          this.router.navigate(['home']);
+          this.loginForm.reset();
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
   forbiddenNames(control: FormControl): {[s: string]: boolean} {

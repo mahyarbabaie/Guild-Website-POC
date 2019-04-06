@@ -24,10 +24,14 @@ export class AuthService {
         }).pipe(
         map(
           (data)  => {
-            let responseJson = JSON.stringify(data);
-            localStorage.setItem('AUTHENTICATED_USER', userData.username);
-            localStorage.setItem('ACCESS_TOKEN', JSON.parse(responseJson).token);
-            console.log('Logged In Successfully');
+            const responseJson = JSON.stringify(data);
+            if (!JSON.parse(responseJson).token) {
+              console.log('Logged in Failed');
+            } else {
+              localStorage.setItem('AUTHENTICATED_USER', userData.username);
+              localStorage.setItem('ACCESS_TOKEN', JSON.parse(responseJson).token);
+              console.log('Logged In Successfully');
+            }
           }
         )
       );
@@ -53,10 +57,11 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('ACCESS_TOKEN') !== null;
+    return localStorage.getItem('ACCESS_TOKEN') !== null && localStorage.getItem('AUTHENTICATED_USER') !== null;
   }
 
   logout() {
+    localStorage.removeItem('AUTHENTICATED_USER');
     localStorage.removeItem('ACCESS_TOKEN');
   }
 }

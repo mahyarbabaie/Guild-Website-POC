@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {UserData} from './userData';
 import {environment} from '../../environments/environment';
 import {BASE_AUTH_SERVICE_URL} from '../app.constants';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
+import {throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,6 @@ import {map} from 'rxjs/operators';
 export class AuthService {
 
   constructor(private https: HttpClient) { }
-
-  private httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-
 
   login(userData: UserData) {
     if (userData.username !== null && userData.password !== null) {
@@ -49,10 +47,19 @@ export class AuthService {
         }).pipe(
           map(
             data => {
+              const responseJson = JSON.stringify(data);
+              if (!JSON.parse(responseJson)) {
+                console.log('Registration Failed');
+                return null;
+              }
               console.log('Registered Successfully');
             }
-          )
-      );
+          ),
+      catchError(err => {
+        console.log(err.message);
+        console.log('Error is handled');
+        return throwError('Error thrown from catchError');
+      }));
     }
   }
 

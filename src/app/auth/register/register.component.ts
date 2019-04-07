@@ -14,12 +14,14 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   forbiddenUsernames = [];
   hasDuplicateName = false;
+  hasRegistrationSucceeded = false;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private authService: AuthService) {} // TODO: authService in back-end
 
   ngOnInit() {
+    this.hasRegistrationSucceeded = false;
     this.registerForm = this.formBuilder.group({
       'email': ['', [Validators.required, Validators.pattern('^\\w+[\\w-\\.]*\\@\\w+((-\\w+)|(\\w*))\\.[a-z]{2,3}$')]],
       'username': ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9].{5,15}$'), this.forbiddenNames.bind(this)]],
@@ -40,7 +42,7 @@ export class RegisterComponent implements OnInit {
             console.log('Error: ' + data);
           } else {
             this.hasDuplicateName = false;
-            this.router.navigate(['home']);
+            this.hasRegistrationSucceeded = true;
             this.registerForm.reset();
           }
         },

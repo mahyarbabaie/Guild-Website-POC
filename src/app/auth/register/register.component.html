@@ -1,7 +1,11 @@
-<h2>
-  Register Page
-</h2>
-<div class="row">
+<div class="row justify-content-center">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <h2 class="register-title">
+      Register Page
+    </h2>
+  </div>
+</div>
+<div class="row justify-content-center">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div class="register-form">
@@ -9,7 +13,12 @@
             <p class="username-error">
               The username you entered is already taken. Please enter a new username.
             </p>
-          </span>
+        </span>
+        <span *ngIf="hasRegistrationSucceeded">
+            <h4 class="text-center">
+              Successfully Registered the Account!
+            </h4>
+        </span>
         <div class="form-group">
           <p [ngClass]="{ 'has-error': formControls.email.touched && !formControls.email.valid}">
             <label for="email">Email</label>

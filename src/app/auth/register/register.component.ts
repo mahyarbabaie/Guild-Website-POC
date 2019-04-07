@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
         data => {
           if (data === null) {
             this.hasDuplicateName = true;
+            this.hasRegistrationSucceeded = false;
             console.log('Error: ' + data);
           } else {
             this.hasDuplicateName = false;

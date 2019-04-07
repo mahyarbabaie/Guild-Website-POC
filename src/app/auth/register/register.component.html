@@ -10,7 +10,7 @@
     <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div class="register-form">
         <span *ngIf="hasDuplicateName">
-            <p class="username-error">
+            <p class="username-error text-center">
               The username you entered is already taken. Please enter a new username.
             </p>
         </span>
@@ -35,7 +35,7 @@
           </span>
         </div>
         <div class="form-group">
-          <p [ngClass]="{ 'has-error': formControls.username.touched && !formControls.username.valid}">
+          <p [ngClass]="{ 'has-error': formControls.username.touched && !formControls.username.valid || hasDuplicateName}">
             <label for="username">Username</label>
             <input
               type="text"

@@ -31,8 +31,17 @@ export class AuthService {
               console.log('Logged In Successfully');
             }
           }
-        )
-      );
+        ),
+        catchError(err => {
+          console.log(err.message);
+          const errorJson = JSON.stringify(err);
+
+          if (JSON.parse(errorJson).status === 400) {
+            console.log('Bad Request');
+          }
+          return throwError(err);
+        }
+        ));
     }
   }
 
@@ -48,17 +57,20 @@ export class AuthService {
           map(
             data => {
               const responseJson = JSON.stringify(data);
-              if (!JSON.parse(responseJson)) {
-                console.log('Registration Failed');
-                return null;
+              if (JSON.parse(responseJson).status === 200) {
+                console.log('Registered Successfully');
+                return data;
               }
-              console.log('Registered Successfully');
             }
           ),
       catchError(err => {
         console.log(err.message);
-        console.log('Error is handled');
-        return throwError('Error thrown from catchError');
+        const errorJson = JSON.stringify(err);
+
+        if (JSON.parse(errorJson).status === 400) {
+          console.log('Bad Request');
+        }
+        return throwError(err);
       }));
     }
   }

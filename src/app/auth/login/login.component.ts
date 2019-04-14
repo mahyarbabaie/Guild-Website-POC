@@ -37,7 +37,12 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
         },
         error => {
+          console.log('error section of login()');
           console.log(error);
+          const errorJson = JSON.parse(JSON.stringify(error))
+          if (errorJson.status === 400) {
+            console.log('Invalid credentials');
+          }
         }
       );
   }

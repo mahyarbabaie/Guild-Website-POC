@@ -37,18 +37,25 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.registerForm.value)
       .subscribe(
         data => {
-          if (data === null) {
-            this.hasDuplicateName = true;
-            this.hasRegistrationSucceeded = false;
-            console.log('Error: ' + data);
-          } else {
+          console.log('success section of register()');
+          const dataJson = JSON.parse(JSON.stringify(data));
+          console.log('Reading Status');
+          console.log(dataJson.status);
+          console.log('After Status');
+          if (dataJson.status === 200) {
             this.hasDuplicateName = false;
             this.hasRegistrationSucceeded = true;
             this.registerForm.reset();
           }
         },
         error => {
-        console.log(error);
+          console.log('error section of register()');
+          console.log(error);
+          const errorJson = JSON.parse(JSON.stringify(error));
+          if (errorJson.status === 400) {
+            this.hasDuplicateName = true;
+            this.hasRegistrationSucceeded = false;
+          }
         }
       );
   }

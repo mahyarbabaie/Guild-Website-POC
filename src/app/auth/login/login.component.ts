@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted = false;
+  invalidCredentials = false;
   forbiddenUsernames = [];
 
   constructor(private formBuilder: FormBuilder,
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
               private authService: AuthService) {} // TODO: authService in back-end
 
   ngOnInit() {
+    this.invalidCredentials = false;
     this.loginForm = this.formBuilder.group({
         'username': ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9].{5,15}$'), this.forbiddenNames.bind(this)]],
         'password': ['', [Validators.required, Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$')]]
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value)
       .subscribe(
         data => {
+          this.invalidCredentials = false;
           this.router.navigate(['home']);
           this.loginForm.reset();
         },
@@ -40,8 +43,9 @@ export class LoginComponent implements OnInit {
           console.log('error section of login()');
           console.log(error);
           const errorJson = JSON.parse(JSON.stringify(error))
-          if (errorJson.status === 400) {
+          if (errorJson.status === 400 || errorJson.status === 404) {
             console.log('Invalid credentials');
+            this.invalidCredentials = true;
           }
         }
       );

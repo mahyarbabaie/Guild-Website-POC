@@ -38,6 +38,8 @@ export class AuthService {
 
           if (JSON.parse(errorJson).status === 400) {
             console.log('Bad Request');
+          } else if (JSON.parse(errorJson).status === 404) {
+            console.log('Not Found');
           }
           return throwError(err);
         }

@@ -11,6 +11,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AppRoutingModule} from './app-routing-module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthModule} from './auth/auth.module';
+import { HomeBannerComponent } from './core/home/home-banner/home-banner.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {AuthModule} from './auth/auth.module';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeBannerComponent
   ],
   imports: [
     BrowserModule,

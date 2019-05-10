@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import  url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(https://fonts.googleapis.com/css?family=Bungee:400);
+
 body {
   font-family: 'Open Sans', sans-serif;
   overflow-x: hidden
@@ -10,3 +12,11 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
+
+.navbar {
+  background-color: black !important;
+  -webkit-box-shadow: 0 3px 3px -3px #999;
+  -moz-box-shadow: 0 3px 3px -3px #999;
+  box-shadow: 0 3px 3px -3px #999;
+}
+

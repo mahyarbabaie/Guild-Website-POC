@@ -2,3 +2,17 @@ nav {
   color: white;
 }
 
+.guild-name {
+  font-size: 1.3em;
+  font-weight: bolder;
+  font-family: Bungee, 'Open Sans', serif;
+  color: white;
+  text-shadow:
+    0 5px 4px rgba(0,0,0,0.3),
+    0 10px 15px rgba(0,0,0,0.1),
+    0 20px 26px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  cursor: pointer;
+}

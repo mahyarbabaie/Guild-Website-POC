@@ -9,10 +9,12 @@ export class HomeBannerComponent implements OnInit {
 
   guildLogo: string;
   guildName: string;
+  allianceLogo: string;
 
   constructor() {
     this.guildLogo = 'assets/images/GuildLogo.png';
     this.guildName = 'Forever Forgotten';
+    this.allianceLogo = 'assets/images/AllianceLogo.png';
   }
 
   ngOnInit() {

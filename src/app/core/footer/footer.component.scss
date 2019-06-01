@@ -1,10 +1,25 @@
 footer {
   position: absolute;
+  background-color: black;
   bottom: 0;
   width: 100%;
   color: white;
 }
-
-.footer-copyright {
-  background-color: black;
+hr {
+  width: 50%;
+  border-color: rgba(24,24,25,0.84);
 }
+
+.social-media-buttons {
+  height: 4em;
+  padding: 0.2em;
+}
+
+img:hover {
+  -webkit-filter: brightness(25%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+

@@ -4,31 +4,25 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
-import {HomeComponent} from './core/home/home.component';
-import {HeaderComponent} from './core/header/header.component';
-import {FooterComponent} from './core/footer/footer.component';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AppRoutingModule} from './app-routing-module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthModule} from './auth/auth.module';
-import { HomeContentComponent } from './core/home/home-content/home-content.component';
+import {CoreModule} from './core/core.module';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    PageNotFoundComponent,
-    HomeContentComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AuthModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AuthModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,7 +11,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AppRoutingModule} from './app-routing-module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthModule} from './auth/auth.module';
-import { HomeBannerComponent } from './core/home/home-banner/home-banner.component';
+import { HomeContentComponent } from './core/home/home-content/home-content.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { HomeBannerComponent } from './core/home/home-banner/home-banner.compone
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
-    HomeBannerComponent
+    HomeContentComponent
   ],
   imports: [
     BrowserModule,

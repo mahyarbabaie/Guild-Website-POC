@@ -1,0 +1,51 @@
+ .guild-name {
+    font-size: 3.2em;
+    font-weight: bolder;
+    font-family: Bungee, 'Open Sans', serif;
+    color: white;
+    text-shadow: 0 5px 4px rgba(0, 0, 0, 0.4),
+    0 10px 15px rgba(0, 0, 0, 0.1),
+    0 20px 26px rgba(0, 0, 0, 0.1);
+  }
+
+  .guild-logo {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .alliance-logo {
+    max-width:10em;
+    height:auto;
+  }
+
+  .logo-guildname-row {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .details-text-row {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .details-text {
+    color: white;
+    font-family: Bungee, 'Open Sans', serif;
+    background-color: rgba(0,0,0,0.7);
+    border: .05em solid rgba(255,255,255,0.6)
+  }
+
+  .apply-now-button {
+    font-family: Bungee, 'Open Sans', serif;
+    font-size: 1.4em;
+    padding: 1em 2em;
+    background-color: #266bff;
+    box-shadow: 0 0 0.1em 0.1em rgba(87,84,84,0.71)
+  }
+
+ .apply-now-button:hover {
+   -webkit-filter: brightness(20%);
+   -webkit-transition: all 0.5s ease;
+   -moz-transition: all 0.5s ease;
+   -o-transition: all 0.5s ease;
+   transition: all 0.5s ease;
+ }

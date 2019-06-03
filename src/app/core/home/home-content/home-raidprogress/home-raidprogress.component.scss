@@ -1,0 +1,30 @@
+.raidprogress-column-header {
+  color: white;
+  font-family: Bungee, 'Open Sans', serif;
+  background-color: rgba(0,0,0,0.7);
+  border: .05em solid rgba(255,255,255,0.6)
+}
+
+.raidcontent-column-header {
+  color: white;
+  padding: 2em;
+  font-family: Bungee, 'Open Sans', serif;
+  font-size: 1.1em;
+  background-color: rgba(0,0,0,0.7);
+  border: .05em solid rgba(255,255,255,0.6);
+  -webkit-text-stroke: 0.09em black;
+  text-shadow: 0 5px 5px rgba(0, 0, 0, 0.4),
+  0 10px 15px rgba(0, 0, 0, 0.1),
+  0 20px 26px rgba(0, 0, 0, 0.1);
+}
+
+.bod-background {
+  background-image: url('../../../../../assets/images/battleOfDazaralor.jpg');
+  background-size: cover;
+}
+
+.cos-background {
+  background-image: url('../../../../../assets/images/crucibleOfStorms.jpg');
+  background-size: cover;
+}
+`

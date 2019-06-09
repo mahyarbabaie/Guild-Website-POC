@@ -10,22 +10,22 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="login-form">
          <span *ngIf="invalidCredentials">
-            <p class="username-error text-center">
-              Please enter a valid username/password and try again.
+            <p class="email-error text-center">
+              Please enter valid user credentials and try again.
             </p>
         </span>
         <div class="form-group">
-          <p [ngClass]="{ 'has-error': formControls.username.touched && !formControls.username.valid}">
-            <label for="username">Username</label>
+          <p [ngClass]="{ 'has-error': formControls.email.touched && !formControls.email.valid}">
+            <label for="email">Email</label>
             <input
-              type="text"
-              id="username"
+              type="email"
+              id="email"
               class="form-control"
-              formControlName="username">
+              formControlName="email">
           </p>
-          <span *ngIf="formControls.username.touched && !formControls.username.valid">
-            <p class="username-error">
-              Your username must contain 6-16 characters. It supports letters and numbers
+          <span *ngIf="formControls.email.touched && !formControls.email.valid">
+            <p class="email-error">
+              Your email must be in email format. ex: xxx@xxx.com
             </p>
           </span>
         </div>

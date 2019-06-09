@@ -14,20 +14,20 @@ export class AuthService {
   constructor(private https: HttpClient) { }
 
   login(userData: UserData) {
-    if (userData.username !== null && userData.password !== null) {
+    if (userData.email !== null && userData.password !== null) {
       return this.https.post(`${environment.apiHost}${BASE_AUTH_SERVICE_URL}/login`,
         {
-          username: userData.username,
+          email: userData.email,
           password: userData.password
         }).pipe(
         map(
           (data)  => {
             const responseJson = JSON.stringify(data);
-            if (!JSON.parse(responseJson).token) {
+            if (!JSON.parse(responseJson).accessToken) {
               console.log('Logged in Failed');
             } else {
-              localStorage.setItem('AUTHENTICATED_USER', userData.username);
-              localStorage.setItem('ACCESS_TOKEN', JSON.parse(responseJson).token);
+              sessionStorage.setItem('AUTHENTICATED_USER', userData.username);
+              sessionStorage.setItem('ACCESS_TOKEN', JSON.parse(responseJson).token);
               console.log('Logged In Successfully');
             }
           }
@@ -78,11 +78,11 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('ACCESS_TOKEN') !== null && localStorage.getItem('AUTHENTICATED_USER') !== null;
+    return sessionStorage.getItem('ACCESS_TOKEN') !== null && sessionStorage.getItem('AUTHENTICATED_USER') !== null;
   }
 
   logout() {
-    localStorage.removeItem('AUTHENTICATED_USER');
-    localStorage.removeItem('ACCESS_TOKEN');
+    sessionStorage.removeItem('AUTHENTICATED_USER');
+    sessionStorage.removeItem('ACCESS_TOKEN');
   }
 }

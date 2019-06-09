@@ -2,20 +2,26 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {UserData} from './userData';
 import {environment} from '../../environments/environment';
-import {BASE_AUTH_SERVICE_URL} from '../app.constants';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import {AppConstants} from '../app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private https: HttpClient) { }
+  baseEndPoint: string;
+  authServiceUrl: string;
+
+  constructor(private https: HttpClient) {
+    this.baseEndPoint = environment.apiHost;
+    this.authServiceUrl = AppConstants.BASE_AUTH_SERVICE_URL;
+  }
 
   login(userData: UserData) {
     if (userData.email !== null && userData.password !== null) {
-      return this.https.post(`${environment.apiHost}${BASE_AUTH_SERVICE_URL}/login`,
+      return this.https.post(this.baseEndPoint + this.authServiceUrl + '/login',
         {
           email: userData.email,
           password: userData.password
@@ -49,7 +55,7 @@ export class AuthService {
 
   register(userData: UserData) {
     if (userData.email !== null && userData.username !== null && userData.password !== null) {
-      return this.https.post(`${environment.apiHost}${BASE_AUTH_SERVICE_URL}/register`,
+      return this.https.post(this.baseEndPoint + this.authServiceUrl + '/register',
         {
           username: userData.username,
           email: userData.email,

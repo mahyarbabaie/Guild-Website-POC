@@ -11,7 +11,12 @@
       <div class="register-form">
         <span *ngIf="hasDuplicateName">
             <p class="username-error text-center">
-              The username you entered is already taken. Please enter a new username.
+              The username you entered is already taken. Please enter a different username.
+            </p>
+        </span>
+        <span *ngIf="hasDuplicateEmail">
+            <p class="username-error text-center">
+              The email you entered is already taken. Please enter a different email.
             </p>
         </span>
         <span *ngIf="hasRegistrationSucceeded">
@@ -61,6 +66,21 @@
           <span *ngIf="formControls.password.touched && !formControls.password.valid" class="help-block">
             <p class="password-error">
               Password must contain 7 - 16 characters and it needs to include at least one upper case letter, and one lower case letter, and one numeric digit.
+            </p>
+          </span>
+        </div>
+        <div class="form-group">
+          <p [ngClass]="{ 'has-error': formControls.confirmPassword.touched && formControls.confirmPassword.hasError('validatePassword') }">
+            <label for="confirmpassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmpassword"
+              class="form-control"
+              formControlName="confirmPassword">
+          </p>
+          <span *ngIf="formControls.confirmPassword.touched && formControls.confirmPassword.hasError('validatePassword')" class="help-block">
+            <p class="password-error">
+              Password does not match the one you entered in the password field.
             </p>
           </span>
         </div>

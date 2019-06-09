@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
+import {AbstractControl, Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
+import {AppConstants} from '../../app.constants';
 
 @Component({
   selector: 'app-register',
@@ -14,20 +15,24 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   forbiddenUsernames = [];
   hasDuplicateName = false;
+  hasDuplicateEmail = false;
   hasRegistrationSucceeded = false;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthService) {} // TODO: authService in back-end
+              private authService: AuthService) {
 
-  ngOnInit() {
     this.hasRegistrationSucceeded = false;
     this.registerForm = this.formBuilder.group({
       'email': ['', [Validators.required, Validators.pattern('^\\w+[\\w-\\.]*\\@\\w+((-\\w+)|(\\w*))\\.[a-z]{2,3}$')]],
       'username': ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9].{5,15}$'), this.forbiddenNames.bind(this)]],
-      'password': ['', [Validators.required, Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$')]]
-    });
+      'password': ['', [Validators.required, Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$')]],
+      'confirmPassword': ['', Validators.required ]
+    },
+      {validator: this.validatePassword('password', 'confirmPassword')});
   }
+
+  ngOnInit() {}
 
   get formControls() { return this.registerForm.controls; }
 
@@ -44,7 +49,9 @@ export class RegisterComponent implements OnInit {
           console.log('After Status');
           if (dataJson.status === 200) {
             this.hasDuplicateName = false;
+            this.hasDuplicateEmail = false;
             this.hasRegistrationSucceeded = true;
+            this.submitted = false;
             this.registerForm.reset();
           }
         },
@@ -52,8 +59,14 @@ export class RegisterComponent implements OnInit {
           console.log('error section of register()');
           console.log(error);
           const errorJson = JSON.parse(JSON.stringify(error));
-          if (errorJson.status === 400) {
+          if (errorJson.error.code === AppConstants.ACCOUNT_USERNAME_ALREADY_EXISTS) {
+            console.log('name');
             this.hasDuplicateName = true;
+            this.hasRegistrationSucceeded = false;
+          }
+          if (errorJson.error.code === AppConstants.ACCOUNT_EMAIL_ALREADY_EXISTS) {
+            console.log('email');
+            this.hasDuplicateEmail = true;
             this.hasRegistrationSucceeded = false;
           }
         }
@@ -65,6 +78,19 @@ export class RegisterComponent implements OnInit {
       return {'nameIsForbidden': true};
     }
     return null;
+  }
+
+  validatePassword(passwordKey: string, confirmPasswordKey: string) {
+    return (formgroup: FormGroup) => {
+      const password = formgroup.controls[passwordKey];
+      const confirmPassword = formgroup.controls[confirmPasswordKey];
+
+      if (password.value !== confirmPassword.value) {
+        confirmPassword.setErrors({validatePassword: true});
+      } else {
+        confirmPassword.setErrors(null);
+      }
+    };
   }
 
 }

@@ -1,2 +1,15 @@
-export const BASE_API_URL = '/guildwebsitepoc/api';
-export const BASE_AUTH_SERVICE_URL = '/guildwebsitepoc/AuthService';
+
+export const AppConstants = {
+  BASE_API_URL: '/guildwebsitepoc/api',
+  BASE_AUTH_SERVICE_URL: '/guildwebsitepoc/AuthService',
+  // Account API Error Codes
+  ACCOUNT_NOT_FOUND: 'ACCOUNT1',
+  ACCOUNT_USERNAME_ALREADY_EXISTS: 'ACCOUNT2',
+  ACCOUNT_EMAIL_ALREADY_EXISTS: 'ACCOUNT3',
+  ACCOUNT_ID_MISMATCH: 'ACCOUNT4',
+  ACCOUNT_PASSWORD_MISMATCH: 'ACCOUNT5',
+  // Auth API Error Codes
+  AUTH_UNAUTHORIZED: 'AUTH1'
+};
+
+

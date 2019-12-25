@@ -13,6 +13,8 @@ export class FooterComponent implements OnInit {
   youtubeLogo: string;
   discordLogo: string;
 
+  recruitmentMessage: string;
+
   constructor() {
     this.facebookLogo = 'assets/images/facebookIcon.png';
     this.twitterLogo = 'assets/images/twitterIcon.png';
@@ -22,6 +24,8 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.recruitmentMessage = '<Forever Forgotten> We are a weekend raiding guild recruiting all kinds of players. ' +
+      'Our raid times are Fri & Sat 8PM-11PM PST. We do Mythic+, pvp, and other fun activities. We also welcome casual players too.';
   }
 
 }

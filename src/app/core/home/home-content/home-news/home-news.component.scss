@@ -4,3 +4,21 @@
   background-color: rgba(0,0,0,0.7);
   border: .05em solid rgba(255,255,255,0.6)
 }
+
+.news-column-body {
+  color: white;
+  padding: 1em;
+  font-family: Roboto,'Open Sans', Bungee, serif;
+  font-size: 1em;
+  background-color: rgba(20,20,20,0.7);
+  border: .05em solid rgba(255,255,255,0.6);
+}
+
+.news-column-date {
+  border-bottom: 0.05em solid white;
+}
+
+.news-column-image {
+  max-width:25vw;
+  height: auto;
+}

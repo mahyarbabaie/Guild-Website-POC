@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeNewsComponent implements OnInit {
 
-  constructor() { }
+  guildRanksImage: string;
+
+  constructor() {
+    this.guildRanksImage = '../assets/images/GuildRanks.png';
+  }
 
   ngOnInit() {
   }

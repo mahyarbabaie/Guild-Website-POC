@@ -1,6 +1,7 @@
 footer {
   position: absolute;
   background-color: black;
+  height: 4em;
   bottom: 0;
   width: 100%;
   color: white;
@@ -8,6 +9,10 @@ footer {
 hr {
   width: 50%;
   border-color: rgba(24,24,25,0.84);
+}
+
+.footer-component-bgcolor {
+  background-color: black;
 }
 
 .social-media-buttons {

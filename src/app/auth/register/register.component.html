@@ -1,91 +1,97 @@
-<div class="row justify-content-center">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <h2 class="register-title">
-      Register Page
-    </h2>
-  </div>
-</div>
-<div class="row justify-content-center">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <form [formGroup]="registerForm" (ngSubmit)="register()">
-      <div class="register-form">
-        <span *ngIf="hasDuplicateName">
-            <p class="username-error text-center">
-              The username you entered is already taken. Please enter a different username.
-            </p>
-        </span>
-        <span *ngIf="hasDuplicateEmail">
-            <p class="username-error text-center">
-              The email you entered is already taken. Please enter a different email.
-            </p>
-        </span>
-        <span *ngIf="hasRegistrationSucceeded">
-            <h4 class="text-center">
-              Successfully Registered the Account!
-            </h4>
-        </span>
-        <div class="form-group">
-          <p [ngClass]="{ 'has-error': formControls.email.touched && !formControls.email.valid}">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              class="form-control"
-              formControlName="email">
-          </p>
-          <span *ngIf="formControls.email.touched && !formControls.email.valid">
-            <p class="email-error">
-              Your email must be in email format. ex: xxx@xxx.com
-            </p>
-          </span>
+<div class="register-background">
+  <div class="register-box">
+    <div class="register-frame">
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+          <h2 class="register-title">
+            Register Page
+          </h2>
         </div>
-        <div class="form-group">
-          <p [ngClass]="{ 'has-error': formControls.username.touched && !formControls.username.valid || hasDuplicateName}">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              class="form-control"
-              formControlName="username">
-          </p>
-          <span *ngIf="formControls.username.touched && !formControls.username.valid">
-            <p class="username-error">
-              Your username must contain 6-16 characters. It supports letters and numbers
-            </p>
-          </span>
-        </div>
-        <div class="form-group">
-          <p [ngClass]="{ 'has-error': formControls.password.touched && !formControls.password.valid }">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              class="form-control"
-              formControlName="password">
-          </p>
-          <span *ngIf="formControls.password.touched && !formControls.password.valid" class="help-block">
-            <p class="password-error">
-              Password must contain 7 - 16 characters and it needs to include at least one upper case letter, and one lower case letter, and one numeric digit.
-            </p>
-          </span>
-        </div>
-        <div class="form-group">
-          <p [ngClass]="{ 'has-error': formControls.confirmPassword.touched && formControls.confirmPassword.hasError('validatePassword') }">
-            <label for="confirmpassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmpassword"
-              class="form-control"
-              formControlName="confirmPassword">
-          </p>
-          <span *ngIf="formControls.confirmPassword.touched && formControls.confirmPassword.hasError('validatePassword')" class="help-block">
-            <p class="password-error">
-              Password does not match the one you entered in the password field.
-            </p>
-          </span>
-        </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Register</button>
       </div>
-    </form>
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="register-form">
+              <span *ngIf="hasDuplicateName">
+                  <p class="username-error text-center">
+                    The username you entered is already taken. Please enter a different username.
+                  </p>
+              </span>
+              <span *ngIf="hasDuplicateEmail">
+                  <p class="username-error text-center">
+                    The email you entered is already taken. Please enter a different email.
+                  </p>
+              </span>
+              <span *ngIf="hasRegistrationSucceeded">
+                  <h4 class="text-center">
+                    Successfully Registered the Account!
+                  </h4>
+              </span>
+              <div class="form-group">
+                <p [ngClass]="{ 'has-error': formControls.email.touched && !formControls.email.valid}">
+                  <label for="email"><span class="register-form-titles">Email</span></label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    formControlName="email">
+                </p>
+                <span *ngIf="formControls.email.touched && !formControls.email.valid">
+                  <p class="email-error">
+                    Your email must be in email format. ex: xxx@xxx.com
+                  </p>
+                </span>
+              </div>
+              <div class="form-group">
+                <p [ngClass]="{ 'has-error': formControls.username.touched && !formControls.username.valid || hasDuplicateName}">
+                  <label for="username"><span class="register-form-titles">Username</span></label>
+                  <input
+                    type="text"
+                    id="username"
+                    class="form-control"
+                    formControlName="username">
+                </p>
+                <span *ngIf="formControls.username.touched && !formControls.username.valid">
+                  <p class="username-error">
+                    Your username must contain 6-16 characters. It supports letters and numbers
+                  </p>
+                </span>
+              </div>
+              <div class="form-group">
+                <p [ngClass]="{ 'has-error': formControls.password.touched && !formControls.password.valid }">
+                  <label for="password"><span class="register-form-titles">Password</span></label>
+                  <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    formControlName="password">
+                </p>
+                <span *ngIf="formControls.password.touched && !formControls.password.valid" class="help-block">
+                  <p class="password-error">
+                    Password must contain 7 - 16 characters and it needs to include at least one upper case letter, and one lower case letter, and one numeric digit.
+                  </p>
+                </span>
+              </div>
+              <div class="form-group">
+                <p [ngClass]="{ 'has-error': formControls.confirmPassword.touched && formControls.confirmPassword.hasError('validatePassword') }">
+                  <label for="confirmpassword"><span class="register-form-titles">Confirm Password</span></label>
+                  <input
+                    type="password"
+                    id="confirmpassword"
+                    class="form-control"
+                    formControlName="confirmPassword">
+                </p>
+                <span *ngIf="formControls.confirmPassword.touched && formControls.confirmPassword.hasError('validatePassword')" class="help-block">
+                  <p class="password-error">
+                    Password does not match the one you entered in the password field.
+                  </p>
+                </span>
+              </div>
+              <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

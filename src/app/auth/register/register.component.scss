@@ -13,15 +13,44 @@ h2 {
 .register-title {
   padding-top: 2em;
   margin-bottom: 2em;
+  color: white;
+}
+
+.register-form-titles {
+  color: white;
 }
 
 .username-error,
 .password-error,
 .email-error {
-  color: rgb(230, 14, 14);
+  color: #ff1d17;
+  text-shadow: 0 5px 5px rgba(0, 0, 0, 0.4),
+  0 10px 15px rgba(0, 0, 0, 0.1),
+  0 20px 26px rgba(0, 0, 0, 0.1);
 }
 
 button[type="submit"]:hover {
   background-color: #0003b8;
 }
 
+.register-background {
+  background-size: cover;
+  min-height: 85vh;
+  min-width: 100vw;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 100%),
+    url('../../../assets/images/login-register-background.jpg');
+}
+
+.register-box {
+  margin-left: 55em;
+  padding-top: 30em;
+  width: 50%;
+}
+
+.register-frame {
+  background-color: rgba(20,20,20,0.7);
+  border: .05em solid rgba(255,255,255,0.3);
+  padding-bottom: 3em;
+  width: 60%;
+}

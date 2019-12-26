@@ -1,51 +1,57 @@
-<div class="row justify-content-center">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <h2 class="login-title">
-      Login Page
-    </h2>
-  </div>
-</div>
-<div class="row justify-content-center">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <div class="login-form">
+<div class="login-background">
+  <div class="login-box">
+    <div class="login-frame">
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+          <h2 class="login-title">
+            Login Page
+          </h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="login-form">
          <span *ngIf="invalidCredentials">
             <p class="email-error text-center">
               Please enter valid user credentials and try again.
             </p>
         </span>
-        <div class="form-group">
-          <p [ngClass]="{ 'has-error': formControls.email.touched && !formControls.email.valid}">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              class="form-control"
-              formControlName="email">
-          </p>
-          <span *ngIf="formControls.email.touched && !formControls.email.valid">
+              <div class="form-group">
+                <p [ngClass]="{ 'has-error': formControls.email.touched && !formControls.email.valid}">
+                  <label for="email"><span class="login-form-titles">Email</span></label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    formControlName="email">
+                </p>
+                <span *ngIf="formControls.email.touched && !formControls.email.valid">
             <p class="email-error">
               Your email must be in email format. ex: xxx@xxx.com
             </p>
           </span>
-        </div>
-        <div class="form-group">
-          <p [ngClass]="{ 'has-error': formControls.password.touched && !formControls.password.valid }">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              class="form-control"
-              formControlName="password">
-          </p>
-          <span *ngIf="formControls.password.touched && !formControls.password.valid" class="help-block">
+              </div>
+              <div class="form-group">
+                <p [ngClass]="{ 'has-error': formControls.password.touched && !formControls.password.valid }">
+                  <label for="password"><span class="login-form-titles">Password</span></label>
+                  <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    formControlName="password">
+                </p>
+                <span *ngIf="formControls.password.touched && !formControls.password.valid" class="help-block">
             <p class="password-error">
               Password must contain 7 - 16 characters and it needs to include at least one upper case letter, and one lower case letter, and one numeric digit.
             </p>
           </span>
+              </div>
+              <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+            </div>
+          </form>
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
       </div>
-    </form>
+    </div>
   </div>
 </div>
